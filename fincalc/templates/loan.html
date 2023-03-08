@@ -1,0 +1,147 @@
+{% extends 'base.html' %} {% block title %}Loans{% endblock %} {% block content
+%}
+
+<header class="container mt-5 mb-5 p-5">
+  <div class="d-flex flex-column flex-lg-row align-items-center">
+    <div>
+      <img
+        class="img-fluid shadow-md rounded"
+        src="static/331.png"
+        alt="Women having a discussion on couches"
+      />
+    </div>
+    <div>
+      <h1 class="text-center display-6">Paskolos skaiciuokle</h1>
+      <p class="text-center text-muted">
+        Pasiskaiciuokite savo imoka
+      </p>
+
+      <form method="POST" id="loanForm" class="form text-start">
+        <div class="mb-2">
+          <label for="loanAmount" class="form-label">Paskolso suma(€):</label>
+          <input
+            class="form-control"
+            type="number"
+            id="loanAmount"
+            name="loanAmount"
+            value="{{request.form['loanAmount']}}"
+            min="0"
+            step="0.01"
+          />
+        </div>
+        <div class="mb-2">
+          <label for="loanTermYears" class="form-label"
+            >Paskolos trukme metais:
+          </label>
+          <input
+            class="form-control"
+            id="loanTerm"
+            name="years"
+            type="number"
+            step="1"
+            min="0"
+            value="{{request.form['years']}}"
+          />
+        </div>
+        <div class="mb-2">
+          <label for="loanTermMonths" class="form-label"
+            >Paskolos trukme menesiais:
+          </label>
+          <input
+            class="form-control"
+            id="loanTerm"
+            name="months"
+            type="number"
+            step="1"
+            min="0"
+            value="{{request.form['months']}}"
+          />
+        </div>
+        <div class="mb-2">
+          <label for="interestRate" class="form-label">Metinės palukanos(%):</label>
+          <input
+            class="form-control"
+            type="number"
+            id="interestRate"
+            name="interestRate"
+            step=".01"
+            min="0.1"
+            value="{{request.form['interestRate']}}"
+          />
+        </div>
+        <div class="mb-2">
+          <label for="payFrequency text-start" class="form-label"
+            >Payment Frequency:
+          </label>
+          <select
+            class="form-select"
+            id="payFrequency"
+            name="payFrequency"
+            value="{{request.form['payFrequency']}}"
+          >
+            <option value="monthly" selected>Monthly</option>
+            <!-- <option value="bi-weekly">Bi-weekly</option> -->
+            <!-- <option value="weekly">Weekly</option> -->
+          </select>
+        </div>
+        <div class="d-flex flex-row gap-4 justify-content-center mt-4">
+          <button
+            class="btn btn-success"
+            type="submit"
+            name="submit"
+            value="submit"
+          >
+            Submit
+          </button>
+          <button
+            class="btn btn-success"
+            type="submit"
+            name="reset"
+            value="reset"
+          >
+            Reset
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</header>
+
+{% if LOAN_DETAILS and SUBMIT %}
+
+<main class="my-5 p-5 bg-light w-100 h-100">
+  <div
+    class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-2"
+  >
+    <div class="flex-fill py-5 w-100 text-center">
+      <h2 class="mb-2">Results:</h2>
+
+      <ul class="list-unstyled">
+        <li class="mb-1">
+          Total Loan Cost: ${{"{:,.2f}".format(LOAN_DETAILS.total_loan_cost)}}
+        </li>
+        <li class="mb-1">
+          Payment({{LOAN_DETAILS.period_type}}):
+          ${{"{:,.2f}".format(LOAN_DETAILS.period_payment)}}
+        </li>
+        <li class="mb-1">
+          Total Interest Paid: ${{"{:,.2f}".format(LOAN_DETAILS.interest_paid)}}
+        </li>
+      </ul>
+    </div>
+    <div class="flex-fill w-100">
+      <img
+        class="img-fluid shadow-md rounded"
+        src="data:image/png;base64 ,{{LOAN_CHART}}"
+        alt="A pie chart comparing interest to principal"
+      />
+    </div>
+  </div>
+  <div id="loanResult" class="p-5 mb-5"></div>
+</main>
+
+<script defer>
+  const element = document.getElementById("loanResult");
+  element.scrollIntoView();
+</script>
+{% endif %} {% endblock %}

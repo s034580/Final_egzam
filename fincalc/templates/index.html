@@ -1,0 +1,90 @@
+{% extends 'base.html' %} {% block content%}
+
+<header class="container text-center mt-5 mb-5">
+  <div class="d-flex flex-column flex-lg-row">
+    <div class="p-2">
+      <img
+        class="img-fluid shadow-md rounded"
+        src="/static/436.png"
+        alt="Illustration of woman standing over houses, reaching for the stars"
+      />
+    </div>
+    <div class="p-2 d-flex flex-column ">
+      
+      <div class="mb-4">
+        <h1 class="display-2">GET YOUR MONEY RIGHT</h1>
+      
+      
+        <p class="fs-5 mt-4 text-muted
+        ">
+          Looking to improve your personal finances? Our loan and investment
+          calculators can help. Click below to start exploring.
+        </p>
+      
+      
+      </div>
+       <div class="d-flex justify-content-center gap-4 mt-4">
+        <form  action="{{url_for('views.loan')}}">
+          <button class="btn btn-success p-2"typ="submit">Loan Calculator</button>
+        </form>
+        <form  action="{{url_for('views.invest')}}">
+          <button  class="btn btn-success p-2">Investment Calculator</button>
+          </form>
+       </div>
+        
+      </div>
+    </div>
+  </div>
+</header>
+<br/>
+
+<section class="text-center p-5 bg-success text-white" >
+  <h2 class="display-5"> Reach Your Financial Goals Faster</h2>
+</section>
+
+
+
+  
+
+  <section class=" d-flex flex-column flex-lg-row p-5 align-items-center text-muted ">
+
+    <div>
+      <img class="img-fluid" src="/static/62.png" alt="Person sitting at desk on computer"/>
+    </div>
+
+    <div>
+      <h3 class=" mx-auto px-5">Step #1: Pay Down Your Debt</h3>
+      <p class="mx-auto px-5 mt-4 text-start" style="max-width: 1200px;">
+        For many of us, debt is an inevitable part of modern life. Housing,
+        healthcare, car payments. The list goes on, but not all debt is
+        inevitable. Things like reducing credit card spending or getting a more
+        affordable car can save you thousands in interest payments. That's why
+        many financial experts advise repaying all your high-interest (eg. credit
+        card) debts before investing. Considering taking a loan to make a big
+        purchase? Our
+        <a class="link-info text-decoration-none" href="{{url_for('views.loan')}}">Loan Calculator</a> can help you see
+        the true cost first.
+      </p>
+    </div>
+   
+  </section>
+
+  <section class="d-flex flex-column flex-lg-row  align-items-center p-5 mb-5 bg-success text-white">
+    
+    <div class="order-2 order-lg-1">
+      <h3 class="mx-auto px-5" >Step #2: Invest For Your Future</h3>
+      <p class="mx-auto px-5  mt-4 text-start" style="max-width: 1200px;">
+        Investing lets you make interest rates work for you. When you were in
+        debt, interest rates meant you got back way less money than you put in.
+        When you invest, its the other way around. Even investing relatively small
+        amounts today can have an impact for your future. Try our
+        <a class="link-info text-decoration-none" href="{{url_for('views.invest')}}">Investment Calculator </a>to explore
+        the possibilities.
+      </p>
+      
+    </div>
+    <div class="order-1 order-lg-2"><img class="img-fluid" src="/static/72.png" alt="Person standing beside charts and graphs"/></div>
+  </section>
+
+
+{% endblock %}

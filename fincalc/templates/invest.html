@@ -1,0 +1,133 @@
+{% extends 'base.html'%} {% block title %}Invest{% endblock %} {%block content%}
+<header class="container mt-5 mb-5 p-5">
+  <div class="d-flex flex-column flex-lg-row align-items-center">
+    <div>
+      <img src="static/114.png" alt="Woman working on computer with coffee" />
+    </div>
+    <div>
+      <h1 class="text-center display-6">Investment Calculator</h1>
+      <p class="text-center text-muted">
+        Regular monthly contributions can add up to life-changing amounts over
+        time. Default interest rate based on S&P 500 historical average.
+      </p>
+
+      <form method="POST" id="investForm" class="form text-start">
+        <div class="mb-2">
+          <label class="form-label" for="initialDeposit"
+            >Initial Deposit($): </label
+          ><input
+            class="form-control"
+            type="number"
+            id="initialDeposit"
+            name="initialDeposit"
+            step="0.01"
+            min="0"
+            value="{{request.form['initialDeposit']}}"
+          />
+        </div>
+        <div class="mb-2">
+          <label class="form-label" for="monthlyDeposit"
+            >Monthly Deposit($):</label
+          ><input
+            class="form-control"
+            type="number"
+            id="monthlyDeposit"
+            name="monthlyDeposit"
+            step="0.01"
+            min="0"
+            value="{{request.form['monthlyDeposit']}}"
+          />
+        </div>
+        <div class="mb-2">
+          <label class="form-label" for="interestRate">Interest Rate(%): </label
+          ><input
+            class="form-control"
+            type="number"
+            id="interestRate"
+            name="interestRate"
+            step="0.01"
+            min="0.1"
+            {%
+            if
+            SUBMIT
+            %}
+            value="{{request.form['interestRate']}}"
+            {%
+            else
+            %}
+            value="11.82"
+            {%
+            endif
+            %}
+          />
+        </div>
+        <div class="mb-2">
+          <label class="form-label" for="years">Years to Invest: </label
+          ><input
+            class="form-control"
+            type="number"
+            id="years"
+            name="years"
+            step="1"
+            min="1"
+            value="{{request.form['years']}}"
+          />
+        </div>
+        <div class="d-flex flex-row gap-4 justify-content-center mt-4">
+          <button
+            class="btn btn-success"
+            type="submit"
+            name="submit"
+            value="submit"
+          >
+            Submit
+          </button>
+          <button
+            class="btn btn-success"
+            type="submit"
+            name="reset"
+            value="reset"
+          >
+            Reset
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</header>
+
+{% if SUBMIT %}
+
+<main class="my-5 p-5 bg-light w-100 h-100">
+  <div
+    class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-2"
+  >
+    <div class="flex-fill py-5 w-100 text-center">
+      <h2 class="mb-2">Results:</h2>
+      <br />
+      <ul class="list-unstyled">
+        <li class="mb-1">
+          Value After {{INVEST_DETAILS.years}} Years : ${{INVEST_DETAILS.total}}
+        </li>
+        <li class="mb-1">
+          Your Total Deposits: ${{INVEST_DETAILS.total_deposits}}
+        </li>
+        <li class="mb-1">Total Profits: ${{INVEST_DETAILS.profit}}</li>
+      </ul>
+    </div>
+    <div class="flex-fill w-100">
+      <img
+        src="data:image/png;base64 ,{{INVEST_GRAPH}}"
+        alt="A graph showing investment returns by year"
+        class="img-fluid shadow-md rounded"
+      />
+    </div>
+  </div>
+  <div id="investResult" class="p-5 mb-5"></div>
+</main>
+
+<script defer>
+  const element = document.getElementById("investResult");
+  element.scrollIntoView();
+</script>
+{% endif %} {% endblock%}

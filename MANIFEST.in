@@ -1,0 +1,3 @@
+graft fincalc/static
+graft fincalc/templates
+global-exclude *.pyc
