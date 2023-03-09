@@ -71,7 +71,7 @@
         </div>
         <div class="mb-2">
           <label for="payFrequency text-start" class="form-label"
-            >Payment Frequency:
+            >Mokėjimo dažnumas:
           </label>
           <select
             class="form-select"
@@ -91,7 +91,7 @@
             name="submit"
             value="submit"
           >
-            Submit
+            Patvirtinti
           </button>
           <button
             class="btn btn-success"
@@ -99,7 +99,7 @@
             name="reset"
             value="reset"
           >
-            Reset
+            Perskaičiuoti
           </button>
         </div>
       </form>
@@ -114,18 +114,18 @@
     class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-2"
   >
     <div class="flex-fill py-5 w-100 text-center">
-      <h2 class="mb-2">Results:</h2>
+      <h2 class="mb-2">Paskola:</h2>
 
       <ul class="list-unstyled">
         <li class="mb-1">
-          Total Loan Cost: ${{"{:,.2f}".format(LOAN_DETAILS.total_loan_cost)}}
+          Bendra mokėtina suma: ${{"{:,.2f}".format(LOAN_DETAILS.total_loan_cost)}}
         </li>
         <li class="mb-1">
-          Payment({{LOAN_DETAILS.period_type}}):
+          Mėnesinis mokėjimas: ({{LOAN_DETAILS.period_type}}):
           ${{"{:,.2f}".format(LOAN_DETAILS.period_payment)}}
         </li>
         <li class="mb-1">
-          Total Interest Paid: ${{"{:,.2f}".format(LOAN_DETAILS.interest_paid)}}
+          Išviso mokamos palūkanos: ${{"{:,.2f}".format(LOAN_DETAILS.interest_paid)}}
         </li>
       </ul>
     </div>

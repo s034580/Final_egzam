@@ -18,14 +18,14 @@ def loan():
                 return redirect(url_for('views.loan'))
         error = None
         if not request.form['loanAmount']:
-            error = "Loan amount is required"
+            error = "Paskolos suma neįvesta"
         elif (not request.form['years'] and not request.form['months']):
-            error = "You must enter a minimum of 1 month or 1 year with a value greater than 0."
+            error = "Turite pasirinkti bent vieną mėnesį ar vienus metus"
 
         elif not request.form['interestRate'] or float(request.form['interestRate']) <= 0:
-            error = "Please enter an interest rate greater than 0"
+            error = "Įveskite palūkanas didesnes už 0"
         elif not request.form['payFrequency']:
-            error = "Please select your payment frequency"
+            error = "Pasirinkite mokėjimo dažnį"
         if error is not None:
             flash('Error: ' + error)
             return redirect(url_for('views.loan'))
@@ -41,7 +41,7 @@ def loan():
             else:
                 months = int(request.form['months'])
             if years == 0 and months == 0:
-                error = "You must enter a minimum of 1 month or 1 year with a value greater than 0."
+                error = "Turite pasirinkti bent vieną mėnesį ar vienus metus"
                 flash("Error: " + error)
                 return redirect(url_for('views.loan'))
             pay_frequency = request.form['payFrequency']
@@ -61,11 +61,11 @@ def invest():
                 return redirect(url_for('views.invest'))
         error = None
         if not request.form['initialDeposit'] and not request.form['monthlyDeposit']:
-            error = 'You must enter a value greater than 0 for either Initial Deposit or Monthtly Deposit.'
+            error = 'Turite pasirinkti pradinį įnašą ar mėnesinį įnešimą'
         elif not request.form['interestRate']:
-            error = 'You must enter an interest rate greater than 0.'
+            error = 'Įveskite palūkanas didesnes už 0.'
         elif not request.form['years']:
-            error = 'You must enter a number of years greater than 0.'
+            error = 'Nepasirinktote trukmės metais.'
         if error is not None:
             flash('Error: ' + error)
             return redirect(url_for('views.invest'))
@@ -80,7 +80,7 @@ def invest():
             else:
                 monthly_deposit = float(request.form['monthlyDeposit'])
             if initial_deposit == 0 and monthly_deposit == 0:
-                error = 'You must enter a value greater than 0 for either Initial Deposit or Monthtly Deposit.'
+                error = 'Turite pasirinkti pradinį įnašą ar mėnesinį įnešimą'
                 flash('Error: ' + error)
                 return redirect(url_for('views.invest'))
 

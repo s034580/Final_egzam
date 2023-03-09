@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}Home{% endblock%} -MoneyCalcs</title>
+    <title>{% block title %}Home{% endblock%} -Paskolinis</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -24,7 +24,7 @@
   <body >
     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
       <div class="container-fluid">
-        <a class="navbar-brand link-light" href="{{url_for('views.index')}}">MoneyCalcs</a>
+        <a class="navbar-brand link-light" href="{{url_for('views.index')}}">Paskolinis</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -39,13 +39,13 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
           <div class="navbar-nav">
               <a class="nav-link link-light" href="{{url_for('views.index')}}"
-                >Home</a
+                >Pagrindinis</a
               >
               <a class="nav-link link-light" href="{{url_for('views.loan')}}"
-                >Loan Calculator</a
+                >Paskolos skaiciuokle</a
               >
               <a class="nav-link link-light" href="{{url_for('views.invest')}}"
-                >Investment Calculator</a
+                >Investavimo skaiciuokle</a
               >
             </div>
           </div>
@@ -62,7 +62,7 @@
     </div>
     {% endfor %} {% block content %} {% endblock %}
     <footer class="container-fluid fixed-bottom text-center bg-dark text-white p-2">
-      <p>&copy; 2023 Thom Bator</p>
+      <p>&copy; 2023 Bankrotinis</p>
     </footer>
     <script>
       const flash = document.getElementById("flash");
